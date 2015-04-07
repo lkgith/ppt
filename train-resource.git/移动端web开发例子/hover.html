@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width"> -->
+        <script src="http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min.js"></script>
+        <style type="text/css">
+            body {
+                moz-user-select: -moz-none;
+                -moz-user-select: none;
+                -o-user-select:none;
+                -khtml-user-select:none;
+                -webkit-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
+            }
+            h1 {text-align: center;}
+            .linkBox { padding: 20px;}
+            a {font-size: 64px;}
+            a span {display: none;}
+            a:hover span {display: inline-block;}
+            a:hover {color: #f00;}
+            a:active {color: #ff0;}
+            .hoverBox {
+                width: 400px;
+                height: 100px;
+                margin-bottom: 20px;
+                overflow: auto;
+                font-size: 24px;
+            }
+            .hoverBox:hover {
+                background: #f00;
+            }
+            .hoverBox:active {
+                background: #ff0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>对:hover与:active的处理</h1>
+        <div class="linkBox"><a href="#">链接一<span>隐藏内容</span></a></div>
+        <div class="linkBox"><a href="#">链接一<span>隐藏内容</span></a></div>
+        <div class="hoverBox">
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+        </div>
+        <div class="hoverBox">
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+            有hover效果的容器<br/>
+        </div>
+
+    </body>
+</html>

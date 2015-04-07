@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8"/>
+<script type="text/javascript" src="./myq.js"></script>
+<script>
+var morkPromisesFn = function(){
+    var defer = new Deferred("p1");
+    setTimeout(function(){
+        try{
+           //业务执行完毕我们需要通知
+           console.log(1);
+           defer.resolve(1);       //直到执行环境堆栈尽包含平台代码前不可被调用,最后调用
+        }catch(error){
+           //如果出现错误我们需要通知拒绝执行
+           defer.reject(error.message);
+        }
+    } , 100);
+    return defer;
+}
+
+var promises1 = morkPromisesFn();
+promises1.then(function(val){
+   console.log('p1 resolve');
+   var d  = new Deferred();
+   setTimeout(function(){
+        d.resolve(val);
+    } , 100);
+   return d;
+}, null)
+
+.then(function(val){
+  console.log('p2 resolve');
+   var d  = new Deferred();
+   setTimeout(function(){
+        ++val;
+        d.reject(val);
+    } , 100);
+   return d;
+})
+
+.then(null, function(val){
+   console.log('p3 reject');
+   var d  = new Deferred();
+   setTimeout(function(){
+        --val;
+        d.resolve(val);
+    } , 100);
+   return d;
+})
+
+.then(function(val){
+    console.log("resolve : "+ val);
+} , function(reson){
+    console.log("reject : "+ reson);
+});
+
+
+setTimeout(function(){
+      promises1.then(function(val){
+        console.log("pomises1 resolve :" +val);
+      } , function(reson){
+        console.log("pomises1 reject :" +reson);
+      });
+} , 5000);
+</script>
+</head>
+</html>

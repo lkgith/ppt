@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width"> -->
+        <script src="http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min.js"></script>
+        <style type="text/css">
+            h1 {text-align: center;}
+            button {font-size: 48px;}
+            .buttonBox { text-align: center;}
+            .list {font-size: 64px; padding: 20px; }
+        </style>
+    </head>
+    <body>
+        <h1>获取屏幕相关的属性</h1>
+        <div class="buttonBox">
+        <button id="handleBtn">点击获取</button>
+        </div>
+        <div id="resultBox"></div>
+        <script>
+        $('#handleBtn').on('click', function () {
+            var result = [];
+            result.push('orientation: ' + window.orientation);
+            result.push('devicePixelRatio: ' + window.devicePixelRatio);
+            result.push('innerWidth: ' + window.innerWidth);
+            result.push('clientWidth: ' + document.documentElement.clientWidth);
+            result.push('screen.width: ' + screen.width);
+            result = '<div class="list">' + result.join('</div><div class="list">') + '</div>';
+            $('#resultBox').html(result);
+        });
+        </script>
+
+    </body>
+</html>

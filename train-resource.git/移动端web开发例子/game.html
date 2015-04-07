@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>基于touch的小玩意</title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width"> -->
+        <script src="http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min.js"></script>
+        <style type="text/css">
+            html {height: 100%;}
+            body {
+                moz-user-select: -moz-none;
+                -moz-user-select: none;
+                -o-user-select:none;
+                -khtml-user-select:none;
+                -webkit-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
+                height: 100%;
+            }
+
+            h1 {text-align: center; pointer-events: none;}
+            button {font-size: 48px;}
+            .buttonBox { text-align: center; pointer-events: none;}
+            .list {font-size: 64px; padding: 20px; }
+            .info {text-align:center; pointer-events: none;}
+            #resultBox { pointer-events: none;}
+
+            .box {
+                width: 50px; height: 50px;
+                position: absolute;
+                top: 0; left: 0;
+                text-align: center; line-height: 50px;
+                font-size: 36px;
+                color: #F00;
+                border: 1px solid #F00;
+                background: #FFF;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>动动手指头</h1>
+        <div class="info">直接触摸屏幕，可以多点触摸</div>
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+        <div class="box">11</div>
+        <script>
+        var boxs = document.querySelectorAll('.box');
+        document.body.addEventListener('touchstart', function (e) {
+            setBox(e.touches);
+            e.preventDefault();
+        }, false);
+        document.documentElement.addEventListener('touchmove', function (e) {
+            setBox(e.touches);
+            e.preventDefault();
+        }, false);
+        document.body.addEventListener('touchend', function (e) {
+            resetBox(e.touches);
+            e.preventDefault();
+        }, false);
+
+        var setBox = function (list) {
+            for(var i = 0, iLen = list.length; i < iLen; i++) {
+                $(boxs[i]).css({
+                    top: list[i].pageY - 100 + 'px',
+                    left: list[i].pageX - 100 + 'px'
+                });
+            }
+        };
+
+        var resetBox = function (list) {
+            var i = list.length;
+            for (var iLen = boxs.length; i < iLen; i++) {
+                $(boxs[i]).css({
+                    top: '0px',
+                    left: '0px'
+                });
+            }
+        };
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width"> -->
+        <script src="http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min.js"></script>
+        <style type="text/css">
+            body {
+                moz-user-select: -moz-none;
+                -moz-user-select: none;
+                -o-user-select:none;
+                -khtml-user-select:none;
+                -webkit-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
+            }
+            h1 {text-align: center;}
+            .linkBox { padding: 20px;}
+            a {font-size: 64px;}
+            a span {display: none;}
+            a:hover span {display: inline-block;}
+            a:hover {color: #f00;}
+            a:active {color: #ff0;}
+            .hoverBox {
+                width: 400px;
+                height: 100px;
+                margin-bottom: 20px;
+                overflow: auto;
+                font-size: 24px;
+            }
+            .hoverBox:hover {
+                background: #f00;
+            }
+            .hoverBox:active {
+                background: #ff0;
+            }
+
+            #mask1 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 50%;
+                background: rgba(0,0,0,.5);
+                z-index: 100;
+            }
+
+            #mask2 {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255,0,0,.5);
+                z-index: 100;
+            }
+
+            #link-box1 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 50%;
+                padding-top: 200px;
+                padding-left: 50px;
+            }
+            #link-box2 {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding-top: 200px;
+                padding-left: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>击穿测试</h1>
+        <div id="link-box1"><a href="http://www.ifeng.com">我会跳转到凤凰网</a></div>
+        <div id="link-box2"><a href="http://www.ifeng.com">我会跳转到凤凰网</a></div>
+        <div id="mask1"></div>
+        <div id="mask2"></div>
+
+        <script>
+        var mask1 = document.getElementById('mask1');
+        var mask2 = document.getElementById('mask2');
+        mask1.addEventListener('touchstart', function (e) {
+            // e.preventDefault();
+        }, false);
+
+        mask1.addEventListener('touchend', function (e) {
+            $(this).hide();
+            // e.preventDefault();
+        }, false);
+
+
+
+        mask2.addEventListener('touchstart', function (e) {
+            e.preventDefault();
+        }, false);
+
+        mask2.addEventListener('touchend', function (e) {
+            $(this).hide();
+            e.preventDefault();
+        }, false);
+        </script>
+    </body>
+</html>

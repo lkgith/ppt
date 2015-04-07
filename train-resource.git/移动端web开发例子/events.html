@@ -1,0 +1,104 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width"> -->
+        <script src="http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min.js"></script>
+        <style type="text/css">
+            body {
+                margin: 0;
+                moz-user-select: -moz-none;
+                -moz-user-select: none;
+                -o-user-select:none;
+                -khtml-user-select:none;
+                -webkit-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
+            }
+            h1 {text-align: center;}
+            .button {font-size: 32px; display: inline-block; padding: 10px; border: 1px solid #000; border-radius: 20px; margin: 0px 10px; cursor: pointer; }
+            .button:hover {background: #FF0;}
+            .buttonBox { text-align: center;}
+            .list {font-size: 48px; padding: 10px; }
+            label {box-sizing: border-box; margin: 0; width: 30%; padding: 5px 30px; display: inline-block;}
+
+        </style>
+    </head>
+    <body>
+        <h1>事件触发顺序测试</h1>
+        <label><input type="checkbox" id="click-check" checked> click</label>
+        <label><input type="checkbox" id="mouseover-check" checked> mouseover</label>
+        <label><input type="checkbox" id="mouseout-check" checked> mouseout</label>
+        <label><input type="checkbox" id="mousedown-check" checked> mousedown</label>
+        <label><input type="checkbox" id="mouseup-check" checked> mouseup</label>
+        <label><input type="checkbox" id="mousemove-check" > mousemove</label>
+        <label><input type="checkbox" id="touchstart-check" checked> touchstart</label>
+        <label><input type="checkbox" id="touchmove-check" checked> touchmove</label>
+        <label><input type="checkbox" id="touchend-check" checked> touchend</label>
+        <div class="buttonBox">
+        <span class="button" id="handleBtn">点击测试</span>
+        <span class="button" id="handleOther">其他按钮</span>
+        <span class="button" id="clearBtn">清除结果</span>
+        </div>
+        <div id="resultBox"></div>
+        <script>
+        var lastTime = 0;
+        var handleBtn = document.getElementById('handleBtn');
+        $('#clearBtn').on('click', function () {
+            $('#resultBox').html('');
+            lastTime = 0;
+        });
+
+        $('#handleOther').on('click', function () {
+        });
+
+        handleBtn.addEventListener('click', function () {
+            setDate('click');
+        }, false);
+        handleBtn.addEventListener('mouseover', function () {
+            setDate('mouseover');
+        }, false);
+        handleBtn.addEventListener('mouseout', function () {
+            setDate('mouseout');
+        }, false);
+        handleBtn.addEventListener('mousedown', function () {
+            setDate('mousedown');
+        }, false);
+        handleBtn.addEventListener('mouseup', function () {
+            setDate('mouseup');
+        }, false);
+        handleBtn.addEventListener('mousemove', function () {
+            setDate('mousemove');
+        }, false);
+        handleBtn.addEventListener('touchstart', function () {
+            setDate('touchstart');
+        }, false);
+        handleBtn.addEventListener('touchmove', function () {
+            setDate('touchmove');
+        }, false);
+        handleBtn.addEventListener('touchend', function () {
+            setDate('touchend');
+        }, false);
+
+        var setDate = function (type) {
+            var checkElm = document.getElementById(type + '-check');
+            if (!checkElm.checked) {
+                return;
+            }
+            var time;
+            var now = new Date().valueOf();
+            if (lastTime === 0) {
+                time = 0;
+            } else {
+                time = now - lastTime;
+            }
+            lastTime = now;
+            $('#resultBox').html($('#resultBox').html() + '<div class="list">action: ' + type + ' | time: ' + time + '</div>');
+        };
+        </script>
+
+    </body>
+</html>
